@@ -57,33 +57,34 @@ export default function LandingPage() {
                         {/* ORGANIC CUTS - Dashed Neon Dividers */}
                         <g className="text-primary/70 drop-shadow-[0_0_5px_rgba(255,100,0,0.9)]" strokeDasharray="6 6" strokeWidth="2.5">
                             {/* Chuck / Rib */}
-                            <path d="M 310 145 Q 315 200 310 260" />
+                            <path d="M 310 145 L 310 260" />
                             {/* Rib / Short Loin */}
-                            <path d="M 240 145 Q 240 200 245 260" />
+                            <path d="M 240 145 L 240 260" />
                             {/* Short Loin / Sirloin */}
-                            <path d="M 185 145 Q 185 200 190 265" />
+                            <path d="M 185 145 L 185 265" />
                             {/* Sirloin / Rump */}
-                            <path d="M 135 155 Q 135 200 140 270" />
+                            <path d="M 135 155 L 135 270" />
+
                             {/* Rump / Round (Cuadril / Nalga horizontal) */}
-                            <path d="M 75 220 Q 100 240 140 240" />
+                            <path d="M 75 220 Q 110 230 135 230" />
 
                             {/* Horizontal separator (Belly line) */}
-                            <path d="M 140 270 Q 240 260 380 260" />
+                            <path d="M 135 270 Q 250 260 375 260" />
 
                             {/* Pecho / Asado */}
-                            <path d="M 310 260 Q 300 290 280 340" />
+                            <path d="M 310 260 Q 305 300 295 345" />
                             {/* Asado / Vacío */}
-                            <path d="M 245 260 Q 245 300 220 340" />
+                            <path d="M 240 260 Q 235 300 220 340" />
 
                             {/* Front Shank */}
-                            <path d="M 320 340 Q 330 360 350 400" />
+                            <path d="M 320 340 Q 330 360 345 390" />
                             {/* Back Shank */}
-                            <path d="M 125 330 Q 130 360 145 400" />
+                            <path d="M 125 330 Q 135 360 140 395" />
                         </g>
 
                         {/* GLOWING LABELS */}
                         <g fill="currentColor" stroke="none" fontWeight="900" fontSize="13" letterSpacing="1" className="text-white drop-shadow-[0_0_8px_rgba(255,200,100,0.8)]" style={{ fontFamily: 'Inter, sans-serif' }} textAnchor="middle">
-                            <text x="360" y="200">AGUJA</text>
+                            <text x="365" y="200">AGUJA</text>
 
                             <text x="275" y="195">BIFE</text>
                             <text x="275" y="210">ANCHO</text>
@@ -93,16 +94,16 @@ export default function LandingPage() {
 
                             <text x="160" y="200">LOMO</text>
 
-                            <text x="105" y="180">CUADRIL</text>
-                            <text x="90" y="280">NALGA</text>
+                            <text x="105" y="185">CUADRIL</text>
+                            <text x="95" y="290">NALGA</text>
 
-                            <text x="330" y="295">PECHO</text>
-                            <text x="270" y="295">ASADO</text>
-                            <text x="190" y="295">VACÍO</text>
+                            <text x="335" y="300">PECHO</text>
+                            <text x="275" y="300">ASADO</text>
+                            <text x="195" y="300">VACÍO</text>
 
                             {/* Shanks */}
                             <text x="315" y="380" fontSize="11">OSOBUCO</text>
-                            <text x="110" y="380" fontSize="11">OSOBUCO</text>
+                            <text x="105" y="380" fontSize="11">OSOBUCO</text>
                         </g>
                     </svg>
                 </div>
