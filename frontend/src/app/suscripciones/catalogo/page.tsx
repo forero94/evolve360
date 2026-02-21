@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, Beef } from 'lucide-react';
 
