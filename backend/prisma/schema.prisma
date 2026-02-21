@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String         @id @default(uuid())
+  fullName       String
+  address        String
+  phoneWhatsApp  String
+  email          String         @unique
+  subscriptions  Subscription[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model Product {
+  id               String             @id @default(uuid())
+  name             String
+  unit             String             // "kg" | "unit"
+  pricePerUnit     Float
+  category         String
+  subscriptionItems SubscriptionItem[]
+  orderItems       OrderItem[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model Subscription {
+  id                String             @id @default(uuid())
+  userId            String
+  user              User               @relation(fields: [userId], references: [id])
+  frequency         String             // "weekly" | "monthly"
+  dayOfWeek         Int?               // 0-6 (for weekly)
+  dayOfMonth        Int?               // 1-31 (for monthly)
+  deliveryTimeSlot  String
+  isActive          Boolean            @default(true)
+  items             SubscriptionItem[]
+  orders            Order[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model SubscriptionItem {
+  id             String       @id @default(uuid())
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  productId      String
+  product        Product      @relation(fields: [productId], references: [id])
+  quantity       Float
+}
+
+model Order {
+  id                  String      @id @default(uuid())
+  subscriptionId      String?
+  subscription        Subscription? @relation(fields: [subscriptionId], references: [id])
+  scheduledDate       DateTime
+  status              String      @default("pending") // "pending", "preparing", "out_for_delivery", "delivered"
+  totalEstimatedPrice Float
+  totalFinalPrice     Float?
+  items               OrderItem[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+}
+
+model OrderItem {
+  id             String   @id @default(uuid())
+  orderId        String
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id])
+  quantity       Float    // Weight or items (Estimated)
+  actualQuantity Float?   // The exact weight registered on the scale
+  actualPrice    Float?   // The actual price after weighing (actualQuantity * product.pricePerUnit)
+}
