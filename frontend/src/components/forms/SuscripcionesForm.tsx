@@ -17,7 +17,7 @@ export function SuscripcionesForm() {
                 Ingresa con tu correo electrónico para gestionar tu suscripción (modo desarrollo sin clave).
             </p>
 
-            <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); alert("En desarrollo: ingreso sin validación simulación"); }}>
+            <form className="flex flex-col gap-4">
                 <div>
                     <label className="block text-white/70 text-sm font-bold mb-2">Correo Electrónico</label>
                     <input
@@ -28,8 +28,12 @@ export function SuscripcionesForm() {
                     />
                 </div>
 
-                <button type="submit" className="bg-gradient-to-r from-primary to-accent text-white font-bold py-3.5 px-4 rounded-xl mt-4 hover:shadow-[0_0_20px_rgba(255,100,0,0.3)] transition-all flex justify-center">
-                    Ingresar a mi panel
+                <button
+                    type="button"
+                    onClick={() => alert("En desarrollo: ingreso sin validación simulación")}
+                    className="w-full bg-gradient-to-r from-primary to-accent text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.3)] hover:-translate-y-0.5 transition-all mt-4"
+                >
+                    Ingresar
                 </button>
             </form>
 
