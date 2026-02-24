@@ -32,7 +32,8 @@ export default function MiCuenta() {
 
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/users/email/${encodeURIComponent(email)}`);
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+                const response = await fetch(`${apiUrl}/users/email/${encodeURIComponent(email)}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data) {
