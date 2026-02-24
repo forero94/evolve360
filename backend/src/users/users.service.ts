@@ -38,4 +38,19 @@ export class UsersService {
       where: { id },
     });
   }
+
+  findByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+      include: {
+        subscriptions: {
+          include: {
+            items: {
+              include: { product: true }
+            }
+          }
+        }
+      },
+    });
+  }
 }

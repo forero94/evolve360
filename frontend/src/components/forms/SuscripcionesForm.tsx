@@ -1,9 +1,44 @@
 "use client";
 
-import { User } from 'lucide-react';
+import { User, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function SuscripcionesForm() {
+    const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const router = useRouter();
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setLoading(true);
+        setError("");
+
+        try {
+            const response = await fetch(`http://localhost:3000/users/email/${encodeURIComponent(email)}`);
+            if (response.ok) {
+                const user = await response.json();
+                if (user) {
+                    // Store user info in localStorage for development
+                    localStorage.setItem('subscriber_email', email);
+                    router.push('/suscripciones/mi-cuenta');
+                } else {
+                    setError("El correo no tiene una suscripción activa.");
+                }
+            } else {
+                setError("Ocurrió un error al verificar tu cuenta.");
+            }
+        } catch (err) {
+            setError("No se pudo conectar con el servidor.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="bg-glass-bg border border-glass-border p-8 rounded-3xl backdrop-blur-md w-full shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent" />
@@ -14,26 +49,34 @@ export function SuscripcionesForm() {
 
             <h1 className="text-3xl font-black text-white text-center mb-2">Ingreso Suscriptores</h1>
             <p className="text-white/60 text-center mb-8 text-sm">
-                Ingresa con tu correo electrónico para gestionar tu suscripción (modo desarrollo sin clave).
+                Ingresa con tu correo electrónico para gestionar tu suscripción (modo desarrollo).
             </p>
 
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleLogin} className="flex flex-col gap-4">
                 <div>
                     <label className="block text-white/70 text-sm font-bold mb-2">Correo Electrónico</label>
                     <input
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="tu@email.com"
                         className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
                         required
                     />
                 </div>
 
+                {error && (
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs p-3 rounded-lg text-center">
+                        {error}
+                    </div>
+                )}
+
                 <button
-                    type="button"
-                    onClick={() => alert("En desarrollo: ingreso sin validación simulación")}
-                    className="w-full bg-gradient-to-r from-primary to-accent text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.3)] hover:-translate-y-0.5 transition-all mt-4"
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-gradient-to-r from-primary to-accent text-white font-black py-4 rounded-xl shadow-[0_0_20px_rgba(255,100,0,0.3)] hover:-translate-y-0.5 transition-all mt-4 flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:translate-y-0"
                 >
-                    Ingresar
+                    {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Ingresar"}
                 </button>
             </form>
 

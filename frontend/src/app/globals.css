@@ -3,34 +3,41 @@
 @theme {
   --font-sans: 'Outfit', sans-serif;
 
-  /* Force Dark Mode Colors as Default Theme */
-  --color-background: oklch(0.18 0.01 250);
-  --color-foreground: oklch(0.95 0.01 250);
+  /* Estancia Evolvere Premium Theme (OKLCH) */
+  --color-background: oklch(12% 0.01 20);
+  /* Dark obsidian with a hint of warm red */
+  --color-foreground: oklch(98% 0.01 20);
+  /* Soft parchment white */
 
-  --color-card: oklch(0.22 0.02 250);
-  --color-card-foreground: oklch(0.95 0.01 250);
+  /* Deep Leathers & Minerals */
+  --color-card: oklch(18% 0.02 20);
+  --color-card-foreground: oklch(95% 0.01 20);
 
-  --color-primary: oklch(0.65 0.2 25);
-  --color-primary-foreground: oklch(0.15 0.02 0);
+  /* Primary: Deep Sangre / Oxblood (Industry standard for premium meat) */
+  --color-primary: oklch(45% 0.18 25);
+  --color-primary-foreground: oklch(98% 0.01 20);
 
-  --color-secondary: oklch(0.25 0.03 250);
-  --color-secondary-foreground: oklch(0.95 0.01 250);
+  /* Secondary: Field Green (Livestock & Nature) */
+  --color-secondary: oklch(35% 0.12 145);
+  --color-secondary-foreground: oklch(95% 0.01 145);
 
-  --color-muted: oklch(0.28 0.03 250);
-  --color-muted-foreground: oklch(0.65 0.02 250);
+  --color-muted: oklch(25% 0.02 20);
+  --color-muted-foreground: oklch(70% 0.02 20);
 
-  --color-accent: oklch(0.3 0.05 25);
-  --color-accent-foreground: oklch(0.95 0.05 25);
+  /* Accent: Golden Sun / Pasture Glow */
+  --color-accent: oklch(85% 0.15 85);
+  --color-accent-foreground: oklch(15% 0.05 85);
 
-  --color-border: oklch(0.3 0.02 250);
-  --color-input: oklch(0.3 0.02 250);
-  --color-ring: oklch(0.65 0.2 25);
+  --color-border: oklch(25% 0.02 20 / 0.5);
+  --color-input: oklch(20% 0.02 20);
+  --color-ring: oklch(45% 0.18 25);
 
-  --radius: 1rem;
+  --radius: 1.25rem;
 
-  /* Glassmorphism Variables */
-  --color-glass-bg: rgba(30, 35, 45, 0.4);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
+  /* Advanced Glassmorphism */
+  --color-glass-bg: rgba(25, 20, 18, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+  --glass-blur: blur(16px);
 }
 
 body {
