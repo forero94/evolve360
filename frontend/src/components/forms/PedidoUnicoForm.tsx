@@ -5,7 +5,7 @@ import { Box } from 'lucide-react';
 
 export function PedidoUnicoForm() {
     return (
-        <form className="flex flex-col gap-6">
+        <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-6">
 
             {/* Datos del Cliente */}
             <div>

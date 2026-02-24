@@ -19,6 +19,13 @@ export function SuscripcionesForm() {
         setError("");
 
         try {
+            // Bypass for Demo Mode
+            if (email.toLowerCase() === 'demo@evolvere.com') {
+                localStorage.setItem('subscriber_email', email.toLowerCase());
+                router.push('/suscripciones/mi-cuenta');
+                return;
+            }
+
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
             const response = await fetch(`${apiUrl}/users/email/${encodeURIComponent(email)}`);
             if (response.ok) {
@@ -34,7 +41,13 @@ export function SuscripcionesForm() {
                 setError("Ocurrió un error al verificar tu cuenta.");
             }
         } catch (err) {
-            setError("No se pudo conectar con el servidor.");
+            // Fallback for Demo Mode in case of connection error
+            if (email.toLowerCase() === 'demo@evolvere.com') {
+                localStorage.setItem('subscriber_email', email.toLowerCase());
+                router.push('/suscripciones/mi-cuenta');
+            } else {
+                setError("No se pudo conectar con el servidor.");
+            }
         } finally {
             setLoading(false);
         }

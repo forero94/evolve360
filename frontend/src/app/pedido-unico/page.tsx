@@ -2,13 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Importación dinámica para evitar errores de pre-renderizado en el servidor
-const PedidoUnicoForm = dynamic(
-    () => import('@/components/forms/PedidoUnicoForm').then(mod => mod.PedidoUnicoForm),
-    { ssr: false }
-);
+import { PedidoUnicoForm } from '@/components/forms/PedidoUnicoForm';
 
 // UNIQUE_ID_CHECK_PEDIDO_UNICO_V1
 export default function PedidoUnico() {

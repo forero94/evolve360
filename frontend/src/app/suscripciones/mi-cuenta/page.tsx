@@ -31,6 +31,28 @@ export default function MiCuenta() {
         }
 
         const fetchUserData = async () => {
+            // Mock data for Demo Mode
+            if (email.toLowerCase() === 'demo@evolvere.com') {
+                setUser({
+                    fullName: 'Cliente de Prueba',
+                    email: 'demo@evolvere.com',
+                    address: 'Estancia Evolvere, Las Cortaderas, Buenos Aires',
+                    subscriptions: [
+                        {
+                            id: 'demo-sub',
+                            frequency: 'monthly',
+                            items: [
+                                { id: 1, product: { name: 'Ojo de Bife MD', unit: 'kg' }, quantity: 2 },
+                                { id: 2, product: { name: 'Vacío Premium', unit: 'kg' }, quantity: 3 },
+                                { id: 3, product: { name: 'Chorizos de la Casa', unit: 'pack' }, quantity: 2 }
+                            ]
+                        }
+                    ]
+                });
+                setLoading(false);
+                return;
+            }
+
             try {
                 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
                 const response = await fetch(`${apiUrl}/users/email/${encodeURIComponent(email)}`);

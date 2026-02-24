@@ -2,13 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Importación dinámica para evitar errores de pre-renderizado en el servidor
-const SuscripcionesForm = dynamic(
-    () => import('@/components/forms/SuscripcionesForm').then(mod => mod.SuscripcionesForm),
-    { ssr: false }
-);
+import { SuscripcionesForm } from '@/components/forms/SuscripcionesForm';
 
 export default function Suscripciones() {
     return (
