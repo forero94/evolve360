@@ -1,10 +1,13 @@
-"use client";
-
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { PedidoUnicoForm } from '@/components/forms/PedidoUnicoForm';
+import dynamic from 'next/dynamic';
 
-// UNIQUE_ID_CHECK_PEDIDO_UNICO_V1
+const PedidoUnicoForm = dynamic(
+    () => import('@/components/forms/PedidoUnicoForm').then(mod => mod.PedidoUnicoForm),
+    { ssr: false }
+);
+
+// UNIQUE_ID_CHECK_PEDIDO_UNICO_V2
 export default function PedidoUnico() {
     return (
         <div className="min-h-screen flex flex-col relative bg-background">

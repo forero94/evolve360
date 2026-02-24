@@ -4,8 +4,13 @@
 import { Box } from 'lucide-react';
 
 export function PedidoUnicoForm() {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        alert("En desarrollo: creando orden");
+    };
+
     return (
-        <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
 
             {/* Datos del Cliente */}
             <div>
@@ -63,8 +68,7 @@ export function PedidoUnicoForm() {
             </div>
 
             <button
-                type="button"
-                onClick={() => alert("En desarrollo: creando orden")}
+                type="submit"
                 className="bg-gradient-to-r from-primary to-accent text-white font-black text-lg py-4 px-6 rounded-xl mt-6 hover:shadow-[0_0_20px_rgba(255,100,0,0.3)] transition-all flex justify-center items-center gap-2"
             >
                 <Box className="w-5 h-5" /> Confirmar Pedido
